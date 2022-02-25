@@ -32,6 +32,11 @@ header a {
     text-decoration: none;
 }
 
+header a:hover,
+header a:focus {
+    text-decoration: underline;
+}
+
 header h1 {
     color: white;
     font-size: 3rem;
@@ -83,13 +88,12 @@ header h1 {
 .main-search-field button {
     border: 1px solid var(--border);
     color: var(--greyDark);
-
     font-size: 1em;
     padding: 10px 40px;
 }
 
 .main-search-field input {
-    background: url('images/search-icon.svg') no-repeat scroll 10px 7px;
+    background: url('images/search-icon.svg') no-repeat scroll 10px 8px;
     background-color: white;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
