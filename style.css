@@ -71,6 +71,17 @@ header h1 {
     max-width: 550px;
 }
 
+@media (max-width: 650px) {
+    header h1 {
+        font-size: 2rem;
+        width: 100%;
+    }
+
+    .header-contents {
+        flex-wrap: wrap;
+    }
+}
+
 /* Main */
 
 .main-search-field {
@@ -81,7 +92,23 @@ header h1 {
     top: 200px;
     left: 50%;
     transform: translateX(-50%);
+    max-width: 550px;
     width: 550px;
+}
+
+@media (max-width: 650px) {
+    .main-search-field {
+        flex-wrap: wrap;
+        gap: 0.5em;
+        width: 90%;
+    }
+
+    .main-search-field input,
+    .main-search-field button {
+        border-radius: 6px;
+        flex-grow: 1;
+        width: 90%;
+    }
 }
 
 .main-search-field input,
@@ -118,7 +145,6 @@ header h1 {
     height: calc(100vh - 219px);
     margin: 0 auto;
     max-width: 550px;
-    width: 550px;
 }
 
 .movie-icon {
