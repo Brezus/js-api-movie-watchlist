@@ -20,7 +20,7 @@ body {
 header {
     background-color: #444;
     background-blend-mode: multiply;
-    background-image: url('/images/header.jpg');
+    background-image: url('images/header.jpg');
     background-size: cover;
     background-position: center 21%;
     padding: 80px 40px;
@@ -67,7 +67,7 @@ header h1 {
 }
 
 .main-search-field input {
-    background: url('/images/search-icon.svg') no-repeat scroll 10px 7px;
+    background: url('images/search-icon.svg') no-repeat scroll 10px 7px;
     background-color: white;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -77,6 +77,11 @@ header h1 {
 .main-search-field button {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+}
+
+.main-search-field button:hover,
+.main-search-field button:focus {
+    cursor: pointer;
 }
 
 .main-contents {
