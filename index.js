@@ -6,7 +6,7 @@ const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
 )
 
-searchBtn.addEventListener('submit', searchMovies)
+searchBtn.addEventListener('click', searchMovies)
 
 function searchMovies() {
     // IMDb Movie title to search for
