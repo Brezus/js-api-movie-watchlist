@@ -27,28 +27,34 @@ async function searchMovies() {
         element.style.display = 'none'
     }
 
-    const movies = data.Search // cant use this
+    const movies = data.Search
 
     movies.forEach(async movie => {
         let response = await fetch(
             `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`
         )
         let moviesListData = await response.json()
-        console.log(moviesListData)
+        // console.log(moviesListData)
         moviesList.innerHTML += `
-                <div>
-                    <div>
-                        <img src=${moviesListData.Poster} />
+                <div class="cards">
+                    <div class="card">
+                        <div>
+                            <img src=${moviesListData.Poster} class="card-poster" />
+                        </div>
+                        <div class="card-description">
+                            <div class="card-header">
+                                <h2 class="card-title">${moviesListData.Title}</h2>
+                                <img src="images/star-icon.svg" class="star-icon" />
+                                <span>${moviesListData.imdbRating}</span>
+                            </div>
+                            <div class="card-meta">
+                                <p>${moviesListData.Runtime}</p>
+                                <p>${moviesListData.Genre}</p>
+                                <p>+&nbsp;Watchlist</p>
+                            </div>
+                            <p class="card-plot">${moviesListData.Plot}</p>
+                        </div>
                     </div>
-                    <div>
-                        <h2>${moviesListData.Title}</h2>
-                        <img src="images/star-icon.svg" />
-                        <p>${moviesListData.imdbRating}</p>
-                        <p>${moviesListData.Runtime}</p>
-                        <p>${moviesListData.Genre}</p>
-                        <p>Watchlist</p>
-                        <p>${moviesListData.Plot}</p>
-                    </div>    
                 </div>
             `
     })
