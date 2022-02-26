@@ -8,7 +8,7 @@ const movieListDefaultDisplay = document.getElementsByClassName(
 searchBtn.addEventListener('click', searchMovies)
 
 function searchMovies() {
-    fetch(`http://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`)
+    fetch(`https://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`)
         .then(res => res.json())
         .then(data => {
             const movies = data.Search
