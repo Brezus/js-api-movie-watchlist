@@ -44,9 +44,9 @@ header h1 {
 }
 
 button {
-    background: white;
+    /* background: white;
     color: var(--greyDark);
-    -webkit-appearance: none;
+    -webkit-appearance: none; */
 }
 
 /* Utility Classes */
