@@ -192,39 +192,51 @@ a:focus {
 }
 
 .card {
-    display: flex;
-    gap: 1.5em;
+    display: grid;
+    column-gap: 1.5em;
     border-bottom: 1px solid var(--greyLight);
     margin-bottom: 1.5em;
     padding-bottom: 1.5em;
+    grid-auto-rows: auto;
+    grid-template-areas:
+        'poster header'
+        'poster meta'
+        'poster plot';
 }
 
 @media (max-width: 650px) {
     .card {
-        flex-direction: column;
+        gap: 1em;
+        grid-template-columns: 40% 50%;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            'poster header'
+            'poster meta'
+            'plot plot';
     }
 }
 
 .card-poster {
+    grid-area: poster;
+
     border-radius: 2px;
     height: auto;
     width: 150px;
 }
 
-.card-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .card-header {
+    grid-area: header;
+
     align-items: center;
     display: flex;
-    margin-bottom: 1em;
 }
 
 .star-icon {
     margin-right: 0.5em;
+}
+
+.card-rating {
+    font-size: clamp(0.85rem, 3vw, 1rem);
 }
 
 .card-watchlist:hover,
@@ -243,7 +255,24 @@ a:focus {
     display: flex;
     font-size: clamp(0.5rem, 4vw, 1rem);
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-top: -0.5em;
+}
+
+@media (max-width: 650px) {
+    .card-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: start;
+        margin-top: 0;
+    }
+
+    .card-runtime {
+        margin-right: 1em;
+    }
+
+    #watchlistBtn {
+        width: 100%;
+    }
 }
 
 .card-title {
@@ -253,8 +282,23 @@ a:focus {
     margin-right: 0.5em;
 }
 
+@media (max-width: 650px) {
+    .card-title {
+        margin-right: 0.29em;
+    }
+}
+
 .card-plot {
+    grid-area: plot;
+
     color: var(--greyMedium);
     font-size: 1em;
+    margin-top: -2em;
     line-height: 1.5;
+}
+
+@media (max-width: 650px) {
+    .card-plot {
+        margin-top: 0;
+    }
 }

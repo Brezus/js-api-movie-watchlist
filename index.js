@@ -41,22 +41,20 @@ async function searchMovies() {
         moviesList.innerHTML += `
                 <div class="cards">
                     <div class="card">
-                        <div>
-                            <img src=${moviesListData.Poster} class="card-poster" />
+                        <img src=${moviesListData.Poster} class="card-poster" />
+
+                        <div class="card-header">
+                            <h2 class="card-title">${moviesListData.Title}</h2>
+                            <img src="images/star-icon.svg" class="star-icon" />
+                            <span class="card-rating">${moviesListData.imdbRating}</span>
                         </div>
-                        <div class="card-description">
-                            <div class="card-header">
-                                <h2 class="card-title">${moviesListData.Title}</h2>
-                                <img src="images/star-icon.svg" class="star-icon" />
-                                <span>${moviesListData.imdbRating}</span>
-                            </div>
-                            <div class="card-meta">
-                                <p>${moviesListData.Runtime}</p>
-                                <p>${moviesListData.Genre}</p>
-                                <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist()"><img src="images/watchlist-icon.svg" alt="Add film to watchlist"  class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
-                            </div>
-                            <p class="card-plot">${moviesListData.Plot}</p>
+                        
+                        <div class="card-meta">
+                            <span class="card-runtime">${moviesListData.Runtime}</span>
+                            <span>${moviesListData.Genre}</span>
+                            <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist()"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
                         </div>
+                        <p class="card-plot">${moviesListData.Plot}</p>
                     </div>
                 </div>
             `
