@@ -47,7 +47,6 @@ button {
     background: white;
     color: var(--greyDark);
     -webkit-appearance: none;
-    z-index: 99;
 }
 
 /* Utility Classes */
