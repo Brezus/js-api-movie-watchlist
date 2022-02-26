@@ -137,6 +137,7 @@ button {
 .main-search-field button {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    cursor: pointer;
 }
 
 .main-search-field button:hover,
