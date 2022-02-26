@@ -93,11 +93,10 @@ button {
 .main-search-field {
     display: flex;
     margin: 0 auto;
-    max-width: 550px;
-    position: absolute;
+    /* position: absolute;
     top: 200px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
     max-width: 550px;
     width: 550px;
 }
