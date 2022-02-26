@@ -93,10 +93,10 @@ button {
 .main-search-field {
     display: flex;
     margin: 0 auto;
-    /* position: absolute;
+    position: absolute;
     top: 200px;
     left: 50%;
-    transform: translateX(-50%); */
+    transform: translateX(-50%);
     max-width: 550px;
     width: 550px;
 }
@@ -125,7 +125,7 @@ button {
 }
 
 .main-search-field input {
-    /* background: url('images/search-icon.svg') no-repeat scroll 10px 8px; */
+    background: url('images/search-icon.svg') no-repeat scroll 10px 8px;
     background-color: white;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
