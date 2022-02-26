@@ -7,20 +7,21 @@ const movieListDefaultDisplay = document.getElementsByClassName(
 
 searchBtn.addEventListener('click', searchMovies)
 
-function searchMovies() {
-    fetch(`https://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`)
-        .then(res => res.json())
-        .then(data => {
-            const movies = data.Search
+async function searchMovies() {
+    let res = await fetch(
+        `https://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`
+    )
+    let data = await res.json()
 
-            for (let element of movieListDefaultDisplay) {
-                element.style.display = 'none'
-            }
+    const movies = data.Search
 
-            movies.forEach(movie => {
-                moviesList.innerHTML += `
-                <h2>${movie.Title}</h2>
-            `
-            })
-        })
+    for (let element of movieListDefaultDisplay) {
+        element.style.display = 'none'
+    }
+
+    movies.forEach(movie => {
+        moviesList.innerHTML += `
+        <h2>${movie.Title}</h2>
+    `
+    })
 }
