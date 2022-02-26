@@ -51,18 +51,36 @@ button {
     -webkit-appearance: none;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 /* Utility Classes */
 
-.hide {
-    display: none;
+.black {
+    color: black;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .fs-18 {
     font-size: 1.125em;
 }
 
-.bold {
-    font-weight: 700;
+.hide {
+    display: none;
+}
+
+.mb-1 {
+    margin-bottom: 1em;
 }
 
 .text-grey-light {

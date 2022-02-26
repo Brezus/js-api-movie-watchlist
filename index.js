@@ -1,5 +1,6 @@
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
+const watchlistBtn = document.getElementById('watchlistBtn')
 const moviesList = document.getElementById('moviesList')
 const movieListDefaultDisplayContainer = document.getElementById(
     'movie-list-default-display-container'
@@ -8,7 +9,9 @@ const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
 )
 
-searchBtn.addEventListener('click', searchMovies)
+if (searchBtn) {
+    searchBtn.addEventListener('click', searchMovies)
+}
 
 async function searchMovies() {
     if (moviesList.children) {
@@ -50,7 +53,7 @@ async function searchMovies() {
                             <div class="card-meta">
                                 <p>${moviesListData.Runtime}</p>
                                 <p>${moviesListData.Genre}</p>
-                                <p class="card-watchlist"><img src="images/watchlist-icon.svg" alt=""  class="card-watchlist-plus-icon" />&nbsp;Watchlist</p>
+                                <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist()"><img src="images/watchlist-icon.svg" alt="Add film to watchlist"  class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
                             </div>
                             <p class="card-plot">${moviesListData.Plot}</p>
                         </div>
@@ -58,4 +61,10 @@ async function searchMovies() {
                 </div>
             `
     })
+}
+
+const watchlist = document.getElementById('watchlist')
+
+function addToWatchlist() {
+    console.log('added!')
 }
