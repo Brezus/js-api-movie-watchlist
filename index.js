@@ -5,29 +5,26 @@ const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
 )
 
-searchBtn.addEventListener('click', function () {
-    window.alert(`${searchInput.value}`)
-})
+// searchBtn.addEventListener('click', function () {
+//     window.alert(`${searchInput.value}`)
+// })
 
-// searchBtn.addEventListener('click', searchMovies)
+searchBtn.addEventListener('click', searchMovies)
 
-// function searchMovies() {
-//     // IMDb Movie title to search for
-//     fetch(`http://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`)
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data.Search)
-//             const movies = data.Search
+function searchMovies() {
+    fetch(`http://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`)
+        .then(res => res.json())
+        .then(data => {
+            const movies = data.Search
 
-//             for (let element of movieListDefaultDisplay) {
-//                 element.style.display = 'none'
-//             }
+            for (let element of movieListDefaultDisplay) {
+                element.style.display = 'none'
+            }
 
-//             movies.forEach(movie => {
-//                 console.log(movie)
-//                 moviesList.innerHTML += `
-//                 <h2>${movie.Title}</h2>
-//             `
-//             })
-//         })
-// }
+            movies.forEach(movie => {
+                moviesList.innerHTML += `
+                <h2>${movie.Title}</h2>
+            `
+            })
+        })
+}
