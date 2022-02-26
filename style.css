@@ -152,6 +152,12 @@ button {
     max-width: 550px;
 }
 
+@media (max-width: 650px) {
+    .main-contents {
+        margin: 6em auto;
+    }
+}
+
 .movie-icon {
     margin-bottom: 0.5em;
 }
