@@ -43,6 +43,12 @@ header h1 {
     font-weight: 800;
 }
 
+button {
+    background: white;
+    color: var(--greyDark);
+    -webkit-appearance: none;
+}
+
 /* Utility Classes */
 
 .hide {
