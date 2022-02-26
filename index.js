@@ -1,6 +1,9 @@
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
 const moviesList = document.getElementById('moviesList')
+const movieListDefaultDisplayContainer = document.getElementById(
+    'movie-list-default-display-container'
+)
 const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
 )
@@ -18,6 +21,7 @@ async function searchMovies() {
     for (let element of movieListDefaultDisplay) {
         element.style.display = 'none'
     }
+    movieListDefaultDisplayContainer.style.display = 'none'
 
     movies.forEach(movie => {
         moviesList.innerHTML += `
