@@ -18,9 +18,13 @@ body {
 }
 
 header {
-    background-image: url('images/header.jpg');
-    background-blend-mode: multiply;
-    background-color: #444;
+    /* background-blend-mode: multiply;
+    background-color: #444444; */
+    background-image: linear-gradient(
+            rgba(0, 0, 0, 0.725),
+            rgba(0, 0, 0, 0.725)
+        ),
+        url('images/header.jpg');
     background-size: cover;
     background-position: center 21%;
     padding: 80px 40px;
