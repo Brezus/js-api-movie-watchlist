@@ -50,7 +50,7 @@ async function searchMovies() {
                             <div class="card-meta">
                                 <p>${moviesListData.Runtime}</p>
                                 <p>${moviesListData.Genre}</p>
-                                <p>+&nbsp;Watchlist</p>
+                                <p class="card-watchlist"><img src="images/watchlist-icon.svg" alt=""  class="card-watchlist-plus-icon" />&nbsp;Watchlist</p>
                             </div>
                             <p class="card-plot">${moviesListData.Plot}</p>
                         </div>
