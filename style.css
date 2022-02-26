@@ -145,16 +145,19 @@ button {
 
 .main-contents {
     align-items: center;
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: center;
-    margin: 4em auto;
+    margin: 4em 1em;
+}
+
+.main-contents h2 {
     max-width: 550px;
 }
 
 @media (max-width: 650px) {
     .main-contents {
-        margin: 6em auto;
+        margin: 6em 1em;
     }
 }
 
