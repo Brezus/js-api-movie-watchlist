@@ -49,8 +49,7 @@ async function searchMovies() {
         let summaryPlot = `${moviesListData.Plot.substring(
             0,
             110
-        )} <span id=${hideReadMore}>...<span class="black read-more"  onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</span></span>`
-
+        )}<span id=${hideReadMore}>...<span class="black read-more"  onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</span></span>`
         let readMorePlot = `<span class="read-more-plot" id=${readMoreMovieID} >${moviesListData.Plot.substring(
             110,
             moviesListData.Plot.length
