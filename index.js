@@ -50,13 +50,14 @@ async function searchMovies() {
             0,
             110
         )}<span id=${hideReadMore}>...<span class="black read-more"  onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</span></span>`
+
         let readMorePlot = `<span class="read-more-plot" id=${readMoreMovieID} >${moviesListData.Plot.substring(
             110,
             moviesListData.Plot.length
         )}</span>`
 
-        // let completePlot = moviesListData.Plot
-        let completePlot = summaryPlot + readMorePlot
+        let completePlot = moviesListData.Plot
+        let longPlot = summaryPlot + readMorePlot
 
         let movieID = moviesListData.imdbID
         // console.log(movieID)
@@ -83,12 +84,10 @@ async function searchMovies() {
                                 this.movieID
                             })"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
                         </div>
-                        <!-- <p class="card-plot">${
-                            completePlot.length > 110
-                                ? summaryPlot
-                                : completePlot
-                        }</p> -->
-                        <p class="card-plot">${completePlot}</p>
+                        <p class="card-plot">${
+                            completePlot.length > 110 ? longPlot : completePlot
+                        }</p>
+                        <!-- <p class="card-plot">${completePlot}</p> -->
                     </div>
                 </div>
             `
