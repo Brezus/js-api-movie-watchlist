@@ -259,7 +259,7 @@ a:focus {
 .card-meta {
     color: var(--blackSecondary);
     display: flex;
-    font-size: clamp(0.75rem, 4vw, 0.95rem);
+    font-size: clamp(0.75rem, 4vw, 0.9rem);
     justify-content: space-between;
 }
 
