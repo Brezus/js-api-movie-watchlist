@@ -201,6 +201,7 @@ a:focus {
     grid-template-areas:
         'poster header'
         'poster meta'
+        'poster plot'
         'poster plot';
 }
 
@@ -229,6 +230,7 @@ a:focus {
 
     align-items: center;
     display: flex;
+    margin-bottom: 0.5em;
 }
 
 .star-icon {
@@ -253,9 +255,9 @@ a:focus {
 .card-meta {
     color: var(--blackSecondary);
     display: flex;
-    font-size: clamp(0.5rem, 4vw, 1rem);
+    font-size: clamp(0.5rem, 4vw, 0.85rem);
     justify-content: space-between;
-    margin-top: -0.5em;
+    margin-bottom: 0.5em;
 }
 
 @media (max-width: 650px) {
@@ -299,8 +301,8 @@ a:focus {
 
     color: var(--greyMedium);
     font-size: 1em;
-    margin-top: -2em;
     line-height: 1.5;
+    margin-top: -1em;
 }
 
 @media (max-width: 650px) {

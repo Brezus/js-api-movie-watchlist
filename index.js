@@ -37,7 +37,13 @@ async function searchMovies() {
             `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`
         )
         let moviesListData = await response.json()
-        // console.log(moviesListData)
+
+        let completePlot = moviesListData.Plot
+        let summaryPlot = `${moviesListData.Plot.substring(
+            0,
+            110
+        )} ... <a class="black">Read more</a>`
+
         moviesList.innerHTML += `
                 <div class="cards">
                     <div class="card">
@@ -46,15 +52,23 @@ async function searchMovies() {
                         <div class="card-header">
                             <h2 class="card-title">${moviesListData.Title}</h2>
                             <img src="images/star-icon.svg" class="star-icon" />
-                            <span class="card-rating">${moviesListData.imdbRating}</span>
+                            <span class="card-rating">${
+                                moviesListData.imdbRating
+                            }</span>
                         </div>
                         
                         <div class="card-meta">
-                            <span class="card-runtime">${moviesListData.Runtime}</span>
+                            <span class="card-runtime">${
+                                moviesListData.Runtime
+                            }</span>
                             <span>${moviesListData.Genre}</span>
                             <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist()"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
                         </div>
-                        <p class="card-plot">${moviesListData.Plot}</p>
+                        <p class="card-plot" onclick="showCompletePlot()">${
+                            completePlot.length > 132
+                                ? summaryPlot
+                                : completePlot
+                        }</p>
                     </div>
                 </div>
             `
