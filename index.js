@@ -80,12 +80,10 @@ async function searchMovies() {
                                 moviesListData.Runtime
                             }</span>
                             <span>${moviesListData.Genre}</span>
-                            <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist(${
-                                this.movieID
-                            })"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
+                            <span class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist('Casey')"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</span>
                         </div>
                         <p class="card-plot">${
-                            completePlot.length > 110 ? longPlot : completePlot
+                            completePlot.length < 110 ? completePlot : longPlot
                         }</p>
                     </div>
                 </div>
@@ -98,7 +96,7 @@ function showCompletePlot(readMoreMovieID, hideReadMore) {
     hideReadMore.style.display = 'none'
 }
 
-function addToWatchlist(string1) {
-    console.log(`Movie ID: ${string1}`)
-    // localStorage.setItem('movie', 'Movie One')
+function addToWatchlist(firstName) {
+    console.log(firstName)
+    localStorage.setItem('first name', firstName)
 }
