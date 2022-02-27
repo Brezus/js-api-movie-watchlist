@@ -255,7 +255,7 @@ a:focus {
 .card-meta {
     color: var(--blackSecondary);
     display: flex;
-    font-size: clamp(0.5rem, 4vw, 0.85rem);
+    font-size: clamp(0.75rem, 4vw, 0.95rem);
     justify-content: space-between;
     margin-bottom: 0.5em;
 }
@@ -265,7 +265,6 @@ a:focus {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: start;
-        margin-top: 0;
     }
 
     .card-runtime {
@@ -302,11 +301,23 @@ a:focus {
     color: var(--greyMedium);
     font-size: 1em;
     line-height: 1.5;
-    margin-top: -1em;
 }
 
 @media (max-width: 650px) {
     .card-plot {
         margin-top: 0;
     }
+}
+
+.read-more {
+    cursor: pointer;
+}
+
+.read-more:hover,
+.read-more:focus {
+    text-decoration: underline;
+}
+
+.read-more-plot {
+    display: none;
 }

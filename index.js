@@ -13,6 +13,10 @@ if (searchBtn) {
     searchBtn.addEventListener('click', searchMovies)
 }
 
+const watchlist = document.getElementById('watchlist')
+const readMore = document.getElementsByClassName('read-more')
+const readMorePlot = document.getElementsByClassName('read-more-plot')
+
 async function searchMovies() {
     if (moviesList.children) {
         let children = moviesList.children
@@ -37,16 +41,30 @@ async function searchMovies() {
             `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`
         )
         let moviesListData = await response.json()
+        // console.log(moviesListData)
 
-        let completePlot = moviesListData.Plot
+        let readMoreMovieID = moviesListData.imdbID + 'more'
+        let hideReadMore = moviesListData.imdbID + 'hide'
+
         let summaryPlot = `${moviesListData.Plot.substring(
             0,
             110
-        )} ... <a class="black">Read more</a>`
+        )} <span id=${hideReadMore}>...<span class="black read-more"  onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</span></span>`
+
+        let readMorePlot = `<span class="read-more-plot" id=${readMoreMovieID} >${moviesListData.Plot.substring(
+            110,
+            moviesListData.Plot.length
+        )}</span>`
+
+        // let completePlot = moviesListData.Plot
+        let completePlot = summaryPlot + readMorePlot
+
+        let movieID = moviesListData.imdbID
+        // console.log(movieID)
 
         moviesList.innerHTML += `
                 <div class="cards">
-                    <div class="card">
+                    <div class="card" id=${moviesListData.imdbID}>
                         <img src=${moviesListData.Poster} class="card-poster" />
 
                         <div class="card-header">
@@ -62,21 +80,28 @@ async function searchMovies() {
                                 moviesListData.Runtime
                             }</span>
                             <span>${moviesListData.Genre}</span>
-                            <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist()"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
+                            <a class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist(${
+                                this.movieID
+                            })"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</a>
                         </div>
-                        <p class="card-plot" onclick="showCompletePlot()">${
-                            completePlot.length > 132
+                        <!-- <p class="card-plot">${
+                            completePlot.length > 110
                                 ? summaryPlot
                                 : completePlot
-                        }</p>
+                        }</p> -->
+                        <p class="card-plot">${completePlot}</p>
                     </div>
                 </div>
             `
     })
 }
 
-const watchlist = document.getElementById('watchlist')
+function showCompletePlot(readMoreMovieID, hideReadMore) {
+    readMoreMovieID.style.display = 'inline'
+    hideReadMore.style.display = 'none'
+}
 
-function addToWatchlist() {
-    console.log('added!')
+function addToWatchlist(string1) {
+    console.log(`Movie ID: ${string1}`)
+    // localStorage.setItem('movie', 'Movie One')
 }
