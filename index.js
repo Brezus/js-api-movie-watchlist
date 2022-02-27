@@ -87,7 +87,6 @@ async function searchMovies() {
                         <p class="card-plot">${
                             completePlot.length > 110 ? longPlot : completePlot
                         }</p>
-                        <!-- <p class="card-plot">${completePlot}</p> -->
                     </div>
                 </div>
             `

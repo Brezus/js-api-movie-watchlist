@@ -198,6 +198,7 @@ a:focus {
     margin-bottom: 1.5em;
     padding-bottom: 1.5em;
     grid-auto-rows: auto;
+    grid-auto-rows: 1fr 0.5fr 1fr 1fr;
     grid-template-areas:
         'poster header'
         'poster meta'
@@ -222,6 +223,8 @@ a:focus {
 
     border-radius: 2px;
     height: auto;
+    min-height: 219px;
+    object-fit: contain;
     width: 150px;
 }
 
@@ -257,7 +260,6 @@ a:focus {
     display: flex;
     font-size: clamp(0.75rem, 4vw, 0.95rem);
     justify-content: space-between;
-    margin-bottom: 0.5em;
 }
 
 @media (max-width: 650px) {
