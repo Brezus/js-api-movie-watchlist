@@ -5,6 +5,9 @@ const moviesList = document.getElementById('moviesList')
 const movieListDefaultDisplayContainer = document.getElementById(
     'movie-list-default-display-container'
 )
+const watchListDefaultDisplayContainer = document.getElementById(
+    'watch-list-default-display-container'
+)
 const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
 )
@@ -60,11 +63,13 @@ async function searchMovies() {
         let longPlot = summaryPlot + readMorePlot
 
         let movieID = moviesListData.imdbID
-        // console.log(movieID)
+        let movieIDkey = moviesListData.imdbID + 'key'
+        // console.log(typeof movieID)
 
         moviesList.innerHTML += `
                 <div class="cards">
-                    <div class="card" id=${moviesListData.imdbID}>
+                    <div class="card" id=${movieID}>
+                        <span id=${movieIDkey} class="hide">${movieIDkey}</span>
                         <img src=${moviesListData.Poster} class="card-poster" />
 
                         <div class="card-header">
@@ -80,7 +85,7 @@ async function searchMovies() {
                                 moviesListData.Runtime
                             }</span>
                             <span>${moviesListData.Genre}</span>
-                            <span class="card-watchlist" id="watchlistBtn" onclick="addToWatchlist('Casey')"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</span>
+                            <span class="card-watchlist" id="watchlistBtn" tabindex="0" onclick="addToWatchlist(${movieIDkey},${movieID})"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</span>
                         </div>
                         <p class="card-plot">${
                             completePlot.length < 110 ? completePlot : longPlot
@@ -96,7 +101,22 @@ function showCompletePlot(readMoreMovieID, hideReadMore) {
     hideReadMore.style.display = 'none'
 }
 
-function addToWatchlist(firstName) {
-    console.log(firstName)
-    localStorage.setItem('first name', firstName)
+function addToWatchlist(movieIDkey, movieID) {
+    localStorage.setItem(movieIDkey.innerHTML, movieID.innerHTML)
+}
+
+if (watchlist) {
+    if (watchlist.children) {
+        let children = watchlist.children
+        let childrenArr = Array.prototype.slice.call(children)
+        childrenArr.forEach(child => child.remove())
+    }
+}
+
+for (let i = 0; i < localStorage.length; i++) {
+    let getLocalStorage = localStorage.getItem(localStorage.key(i))
+
+    if (watchlist) {
+        watchlist.innerHTML += `<div class="card">${getLocalStorage}</div>`
+    }
 }

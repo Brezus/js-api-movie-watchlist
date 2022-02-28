@@ -191,6 +191,14 @@ a:focus {
     height: 50vh;
 }
 
+#watchlist-list-default-display-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50vh;
+}
+
 .card {
     display: grid;
     column-gap: 1.5em;
