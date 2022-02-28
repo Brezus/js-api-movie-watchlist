@@ -83,6 +83,10 @@ a:focus {
     margin-bottom: 1em;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .text-grey-light {
     color: var(--greyLight);
 }
@@ -196,7 +200,7 @@ a:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50vh;
+    height: 40vh;
 }
 
 .card {
