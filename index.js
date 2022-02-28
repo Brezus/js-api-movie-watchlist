@@ -105,14 +105,15 @@ function addToWatchlist(movieIDkey, movieID) {
     localStorage.setItem(movieIDkey.innerHTML, movieID.innerHTML)
 }
 
-for (let i = 0; i < localStorage.length; i++) {
-    if (watchlist) {
-        if (watchlist.children) {
-            let children = watchlist.children
-            let childrenArr = Array.prototype.slice.call(children)
-            childrenArr.forEach(child => child.remove())
-        }
+if (watchlist && localStorage.length > 0) {
+    if (watchlist.children) {
+        let children = watchlist.children
+        let childrenArr = Array.prototype.slice.call(children)
+        childrenArr.forEach(child => child.remove())
     }
+}
+
+for (let i = 0; i < localStorage.length; i++) {
     let getLocalStorage = localStorage.getItem(localStorage.key(i))
 
     if (watchlist) {
