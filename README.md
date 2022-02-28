@@ -1,5 +1,8 @@
 # Movie Watchlist API Project
 
-A solo project from Scrimba (all code is from scratch). The only resource provided was a Figma design file and a link to use the OMDb API.
+A solo project from Scrimba (all code is from scratch). The only resource provided was a Figma design file and a link to use the [OMBd API](https://www.omdbapi.com/) and the following requirements:
 
-This project uses the [OMBd API](https://www.omdbapi.com/).
+-   Two pages - index.html and watchlist.html.
+-   Index = search page. Calls to OMDB API with the title searched for and displays search results.
+-   Button to "add to watchlist" which saves that data to local storage.
+-   Watchlist.html loads and displays data from local storage.
