@@ -110,6 +110,10 @@ a:focus {
     .header-contents {
         flex-wrap: wrap;
     }
+
+    .header-link {
+        text-decoration: underline;
+    }
 }
 
 /* Main */
