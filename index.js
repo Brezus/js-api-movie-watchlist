@@ -1,15 +1,21 @@
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
 const watchlistBtn = document.getElementById('watchlistBtn')
+const removeFromWatchlistBtn = document.getElementById('removeFromWatchlistBtn')
+const removeMovie = document.getElementById('removeMovie')
 const moviesList = document.getElementById('moviesList')
 const movieListDefaultDisplayContainer = document.getElementById(
     'movie-list-default-display-container'
 )
 const watchListDefaultDisplayContainer = document.getElementById(
-    'watch-list-default-display-container'
+    'watchlist-default-display-container'
 )
 const movieListDefaultDisplay = document.getElementsByClassName(
     'movie-list-default-display'
+)
+const cardWatchlistBtn = document.getElementsByClassName('watchlist-btn')
+const removeWatchlistBtn = document.getElementsByClassName(
+    'remove-watchlist-btn'
 )
 
 if (searchBtn) {
@@ -64,12 +70,13 @@ async function searchMovies() {
 
         let movieID = moviesListData.imdbID
         let movieIDkey = moviesListData.imdbID + 'key'
-        // console.log(typeof movieID)
+        let watchlistBtnKey = moviesListData.imdbID + 'watchlistBtn'
+        let removeBtnKey = moviesListData.imdbID + 'removeBtn'
 
         moviesList.innerHTML += `
                 <div class="cards">
                     <div class="card" id=${movieID}>
-                        <span id=${movieIDkey} class="hide">${movieIDkey}</span>
+                        <span id=${movieIDkey} class="hide movie-key">${movieIDkey}</span>
                         <img src=${moviesListData.Poster} class="card-poster" />
 
                         <div class="card-header">
@@ -85,7 +92,18 @@ async function searchMovies() {
                                 moviesListData.Runtime
                             }</span>
                             <span>${moviesListData.Genre}</span>
+                            <!--
                             <span class="card-watchlist" id="watchlistBtn" tabindex="0" onclick="addToWatchlist(${movieIDkey},${movieID})"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</span>
+                            -->
+
+                            <span class="card-watchlist watchlist-btn" id="${watchlistBtnKey}" tabindex="0" onclick="addToWatchlist(${movieIDkey}, ${movieID}, ${watchlistBtnKey}, ${removeBtnKey})"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</span>
+
+                            <!--
+                            <span class="card-watchlist" id="removeFromWatchlistBtn" tabindex="0" onclick="removeFromWatchlist(${movieIDkey})"><img src="images/remove-icon.svg" alt="Remove film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Remove</span>
+                            -->
+
+                            <span class="card-watchlist remove-watchlist-btn" id="${removeBtnKey}" tabindex="0" onclick="removeFromWatchlist(${movieIDkey}, ${removeBtnKey}, ${watchlistBtnKey}, ${removeBtnKey})"><img src="images/remove-icon.svg" alt="Remove film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Remove</span>
+
                         </div>
                         <p class="card-plot">${
                             completePlot.length < 110 ? completePlot : longPlot
@@ -94,22 +112,60 @@ async function searchMovies() {
                 </div>
             `
     })
+
+    setTimeout(displayWatchlistOrRemoveBtn, 500)
 }
+
+let localStorageKeys = Object.keys(localStorage)
 
 function showCompletePlot(readMoreMovieID, hideReadMore) {
     readMoreMovieID.style.display = 'inline'
     hideReadMore.style.display = 'none'
 }
 
-function addToWatchlist(movieIDkey, movieID) {
+function addToWatchlist(movieIDkey, movieID, watchlistBtnKey, removeBtnKey) {
     localStorage.setItem(movieIDkey.innerHTML, movieID.innerHTML)
+    watchlistBtnKey.style.display = 'none'
+    removeBtnKey.style.display = 'inline'
+}
+
+let movieCards = document.getElementsByClassName('card')
+let movieKey = document.getElementsByClassName('movie-key')
+
+function removeFromWatchlist(
+    movieIDkey,
+    removeBtnKey,
+    watchlistBtnKey,
+    removeBtnKey
+) {
+    localStorage.removeItem(movieIDkey.innerHTML)
+
+    if (watchlist) {
+        localStorage.removeItem(movieIDkey.innerHTML) // works
+
+        let parentEl = document.getElementById(
+            movieIDkey.innerHTML
+        ).parentElement
+        parentEl.remove()
+    }
+
+    watchlistBtnKey.style.display = 'inline'
+    removeBtnKey.style.display = 'none'
+
+    if (watchlist && localStorage.length === 0) {
+        if (watchlist.children) {
+            let children = watchlist.children
+            let childrenArr = Array.prototype.slice.call(children)
+            childrenArr.forEach(child => (child.style.display = 'flex'))
+        }
+    }
 }
 
 if (watchlist && localStorage.length > 0) {
     if (watchlist.children) {
         let children = watchlist.children
         let childrenArr = Array.prototype.slice.call(children)
-        childrenArr.forEach(child => child.remove())
+        childrenArr.forEach(child => (child.style.display = 'none'))
     }
 }
 
@@ -118,5 +174,33 @@ for (let i = 0; i < localStorage.length; i++) {
 
     if (watchlist) {
         watchlist.innerHTML += `<div class="card">${getLocalStorage}</div>`
+    }
+
+    for (let button of cardWatchlistBtn) {
+        button.style.display = 'none'
+    }
+}
+
+if (watchlist) {
+    for (let button of removeWatchlistBtn) {
+        button.style.display = 'inline'
+    }
+}
+
+function displayWatchlistOrRemoveBtn() {
+    for (let movie of movieKey) {
+        let removeBtnID = movie.id.slice(0, 9) + 'removeBtn'
+        let removeBtn = document.getElementById(removeBtnID)
+
+        let watchlistBtnID = movie.id.slice(0, 9) + 'watchlistBtn'
+        let watchlistBtn = document.getElementById(watchlistBtnID)
+
+        localStorageKeys.forEach(key => {
+            if (movie.id === key) {
+                console.log('included!')
+                removeBtn.style.display = 'inline'
+                watchlistBtn.style.display = 'none'
+            }
+        })
     }
 }
