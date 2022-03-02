@@ -371,7 +371,7 @@ a:focus {
 }
 
 @media (max-width: 650px) {
-    .watchlist-btn {
+    .card-watchlist {
         width: 100%;
     }
 }
