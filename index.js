@@ -34,7 +34,7 @@ async function searchMovies() {
     }
 
     let res = await fetch(
-        `https://www.omdbapi.com/?s=${searchInput.value}&apikey=e668e570`
+        `https://www.omdbapi.com/?s=${searchInput.value.trim()}&apikey=e668e570`
     )
     let data = await res.json()
 
@@ -50,7 +50,6 @@ async function searchMovies() {
             `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`
         )
         let moviesListData = await response.json()
-        // console.log(moviesListData)
 
         let readMoreMovieID = moviesListData.imdbID + 'more'
         let hideReadMore = moviesListData.imdbID + 'hide'
