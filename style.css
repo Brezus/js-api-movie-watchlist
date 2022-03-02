@@ -257,6 +257,25 @@ a:focus {
     margin-right: 0.5em;
 }
 
+@media (max-width: 650px) {
+    .card-header {
+        margin-top: 1em;
+    }
+
+    .card-title,
+    .star-icon,
+    .card-rating {
+        align-self: start;
+    }
+
+    .card-title {
+        margin-top: -6px;
+    }
+    .card-rating {
+        margin-top: -2px;
+    }
+}
+
 .card-rating {
     font-size: clamp(0.85rem, 3vw, 1rem);
 }
@@ -345,4 +364,10 @@ a:focus {
 
 .remove-watchlist-btn {
     display: none;
+}
+
+@media (max-width: 650px) {
+    .watchlist-btn {
+        width: 100%;
+    }
 }
