@@ -280,6 +280,10 @@ a:focus {
     font-size: clamp(0.85rem, 3vw, 1rem);
 }
 
+.card-watchlist {
+    width: 100px;
+}
+
 .card-watchlist:hover,
 .card-watchlist:focus {
     cursor: pointer;
