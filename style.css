@@ -280,10 +280,20 @@ a:focus {
     font-size: clamp(0.85rem, 3vw, 1rem);
 }
 
-.card-watchlist {
+.card-btn {
+    border: none;
+    font-size: 1em;
     width: 100px;
 }
 
+@media (max-width: 650px) {
+    .remove-watchlist-btn {
+        max-width: 77px;
+    }
+    .watchlist-btn {
+        max-width: 80px;
+    }
+}
 .card-watchlist:hover,
 .card-watchlist:focus {
     cursor: pointer;
@@ -298,6 +308,7 @@ a:focus {
 .card-meta {
     grid-area: meta;
 
+    align-items: center;
     color: var(--blackSecondary);
     display: flex;
     font-size: clamp(0.75rem, 4vw, 0.9rem);
@@ -308,7 +319,6 @@ a:focus {
     .card-meta {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: start;
     }
 
     .card-runtime {
@@ -354,7 +364,9 @@ a:focus {
 }
 
 .read-more {
+    border: none;
     cursor: pointer;
+    font-size: 1em;
 }
 
 .read-more:hover,
