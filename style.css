@@ -286,6 +286,7 @@ a:focus {
     width: 100px;
 }
 
+/* this was updated */
 @media (max-width: 650px) {
     .remove-watchlist-btn,
     .watchlist-btn {
