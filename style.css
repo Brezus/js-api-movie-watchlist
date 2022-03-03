@@ -286,12 +286,10 @@ a:focus {
     width: 100px;
 }
 
-/* this was updated */
 @media (max-width: 650px) {
     .remove-watchlist-btn,
     .watchlist-btn {
-        text-align: left;
-        width: 100%;
+        max-width: 80px;
     }
 }
 .card-watchlist:hover,
