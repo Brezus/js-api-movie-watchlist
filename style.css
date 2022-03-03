@@ -288,9 +288,11 @@ a:focus {
 
 @media (max-width: 650px) {
     .remove-watchlist-btn {
+        width: 100%;
         max-width: 77px;
     }
     .watchlist-btn {
+        width: 100%;
         max-width: 83px;
     }
 }
