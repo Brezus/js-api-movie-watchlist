@@ -289,7 +289,8 @@ a:focus {
 @media (max-width: 650px) {
     .remove-watchlist-btn,
     .watchlist-btn {
-        max-width: 80px;
+        text-align: left;
+        width: 100%;
     }
 }
 .card-watchlist:hover,
