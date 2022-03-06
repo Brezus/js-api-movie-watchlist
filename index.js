@@ -103,7 +103,7 @@ async function searchMovies() {
             `
     })
 
-    setTimeout(displayWatchlistOrRemoveBtn, 350)
+    setTimeout(displayWatchlistOrRemoveBtn, 400)
 }
 
 const movieKey = document.getElementsByClassName('movie-key')
