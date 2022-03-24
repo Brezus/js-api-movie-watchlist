@@ -18,11 +18,7 @@ body {
 }
 
 header {
-    background-image: linear-gradient(
-            rgba(0, 0, 0, 0.725),
-            rgba(0, 0, 0, 0.725)
-        ),
-        url('images/header.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.725), rgba(0, 0, 0, 0.725)), url('images/header.jpg');
     background-size: cover;
     background-position: center 21%;
     padding: 80px 40px;
@@ -191,7 +187,7 @@ a:focus {
     margin-bottom: 0.5em;
 }
 
-#movie-list-default-display-container {
+#movielist-default-container {
     align-items: center;
     display: flex;
     flex-direction: column;
