@@ -1,11 +1,13 @@
 const searchInput = document.getElementById('searchInput')
 const searchBtn = document.getElementById('searchBtn')
-const removeWatchlistBtn = document.getElementsByClassName('remove-watchlist-btn')
 const moviesList = document.getElementById('moviesList')
-const cardWatchlistBtn = document.getElementsByClassName('watchlist-btn')
 const watchlist = document.getElementById('watchlist')
+const removeWatchlistBtn = document.getElementsByClassName('remove-watchlist-btn')
+const cardWatchlistBtn = document.getElementsByClassName('watchlist-btn')
 const readMore = document.getElementsByClassName('read-more')
 const readMorePlot = document.getElementsByClassName('read-more-plot')
+const movieKey = document.getElementsByClassName('movie-key')
+const localStorageKeys = Object.keys(localStorage)
 
 if (searchBtn) {
     searchBtn.addEventListener('click', searchMovies)
@@ -29,26 +31,20 @@ async function searchMovies() {
         let response = await fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`)
         let moviesListData = await response.json()
 
-        let readMoreMovieID = moviesListData.imdbID + 'more'
-        let hideReadMore = moviesListData.imdbID + 'hide'
+        const readMoreMovieID = moviesListData.imdbID + 'more'
+        const hideReadMore = moviesListData.imdbID + 'hide'
 
-        let summaryPlot = `${moviesListData.Plot.substring(
-            0,
-            110
-        )}<span id=${hideReadMore}>...<button class="black read-more" onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</button></span>`
+        const summaryPlot = `${moviesListData.Plot.substring(0, 110)}<span id=${hideReadMore}>...<button class="black read-more" onclick="showCompletePlot(${readMoreMovieID}, ${hideReadMore})">Read more</button></span>`
 
-        let readMorePlot = `<span class="read-more-plot" id=${readMoreMovieID} >${moviesListData.Plot.substring(
-            110,
-            moviesListData.Plot.length
-        )}</span>`
+        const readMorePlot = `<span class="read-more-plot" id=${readMoreMovieID} >${moviesListData.Plot.substring(110, moviesListData.Plot.length)}</span>`
 
-        let completePlot = moviesListData.Plot
-        let longPlot = summaryPlot + readMorePlot
+        const completePlot = moviesListData.Plot
+        const longPlot = summaryPlot + readMorePlot
 
-        let movieID = moviesListData.imdbID
-        let movieIDkey = moviesListData.imdbID + 'key'
-        let watchlistBtnKey = moviesListData.imdbID + 'watchlistBtn'
-        let removeBtnKey = moviesListData.imdbID + 'removeBtn'
+        const movieID = moviesListData.imdbID
+        const movieIDkey = moviesListData.imdbID + 'key'
+        const watchlistBtnKey = moviesListData.imdbID + 'watchlistBtn'
+        const removeBtnKey = moviesListData.imdbID + 'removeBtn'
 
         moviesList.innerHTML += `
                 <div class="cards">
@@ -80,16 +76,13 @@ async function searchMovies() {
     })
 }
 
-const movieKey = document.getElementsByClassName('movie-key')
-let localStorageKeys = Object.keys(localStorage)
-
 function displayWatchlistOrRemoveBtn() {
     for (let movie of movieKey) {
-        let removeBtnID = movie.id.slice(0, 9) + 'removeBtn'
-        let removeBtn = document.getElementById(removeBtnID)
+        const removeBtnID = movie.id.slice(0, 9) + 'removeBtn'
+        const removeBtn = document.getElementById(removeBtnID)
 
-        let watchlistBtnID = movie.id.slice(0, 9) + 'watchlistBtn'
-        let watchlistBtn = document.getElementById(watchlistBtnID)
+        const watchlistBtnID = movie.id.slice(0, 9) + 'watchlistBtn'
+        const watchlistBtn = document.getElementById(watchlistBtnID)
 
         localStorageKeys.forEach((key) => {
             if (movie.id === key) {
@@ -114,11 +107,11 @@ function addToWatchlist(movieIDkey, movieID, watchlistBtnKey, removeBtnKey) {
 function removeFromWatchlist(movieIDkey, removeBtnKey, watchlistBtnKey, removeBtnKey) {
     localStorage.removeItem(movieIDkey.innerHTML)
 
-    // Gets parent element (the movie card) and removes it
+    // Get parent element (the movie card div) and removes it
     if (watchlist) {
         localStorage.removeItem(movieIDkey.innerHTML)
 
-        let parentEl = document.getElementById(movieIDkey.innerHTML).parentElement
+        const parentEl = document.getElementById(movieIDkey.innerHTML).parentElement
         parentEl.remove()
     }
 
@@ -128,40 +121,38 @@ function removeFromWatchlist(movieIDkey, removeBtnKey, watchlistBtnKey, removeBt
     // Display default elements if there is nothing is local storage
     if (watchlist && localStorage.length === 0) {
         if (watchlist.children) {
-            let children = watchlist.children
-            let childrenArr = Array.prototype.slice.call(children)
+            const children = watchlist.children
+            const childrenArr = Array.prototype.slice.call(children)
 
             childrenArr.forEach((child) => (child.style.display = 'flex'))
         }
     }
 }
 
-// Hides default elements if data is in local storage
+// Hide default elements if data is in local storage
 if (watchlist && localStorage.length > 0) {
     if (watchlist.children) {
-        let children = watchlist.children
-        let childrenArr = Array.prototype.slice.call(children)
+        const children = watchlist.children
+        const childrenArr = Array.prototype.slice.call(children)
         childrenArr.forEach((child) => (child.style.display = 'none'))
     }
 }
 
 for (let i = 0; i < localStorage.length; i++) {
-    let getLocalStorage = localStorage.getItem(localStorage.key(i))
+    const getLocalStorage = localStorage.getItem(localStorage.key(i))
 
     // Display every key's value to the watchlist
     if (watchlist) {
         watchlist.innerHTML += `<div class="card">${getLocalStorage}</div>`
 
-        // Hide the 'add to watchlist' button if on watchlist
+        // Hide the 'add to watchlist' button
         for (let button of cardWatchlistBtn) {
             button.style.display = 'none'
         }
-    }
-}
 
-// Display remove button if on the watchlist
-if (watchlist) {
-    for (let button of removeWatchlistBtn) {
-        button.style.display = 'inline'
+        // Display the 'remove from watchlist' button
+        for (let button of removeWatchlistBtn) {
+            button.style.display = 'inline'
+        }
     }
 }
