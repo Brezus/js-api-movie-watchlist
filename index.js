@@ -26,7 +26,7 @@ async function searchMovies() {
 
     const movies = data.Search
 
-    // Gets and displays search results
+    // Get and display search results
     movies.forEach(async (movie) => {
         let response = await fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e668e570`)
         let moviesListData = await response.json()
@@ -40,7 +40,6 @@ async function searchMovies() {
 
         const completePlot = moviesListData.Plot
         const longPlot = summaryPlot + readMorePlot
-
         const movieID = moviesListData.imdbID
         const movieIDkey = moviesListData.imdbID + 'key'
         const watchlistBtnKey = moviesListData.imdbID + 'watchlistBtn'
@@ -65,7 +64,6 @@ async function searchMovies() {
                             <button class="card-btn card-watchlist watchlist-btn" id="${watchlistBtnKey}" onclick="addToWatchlist(${movieIDkey}, ${movieID}, ${watchlistBtnKey}, ${removeBtnKey})"><img src="images/watchlist-icon.svg" alt="Add film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Watchlist</button>
 
                             <button class="card-btn card-watchlist remove-watchlist-btn" id="${removeBtnKey}" onclick="removeFromWatchlist(${movieIDkey}, ${removeBtnKey}, ${watchlistBtnKey}, ${removeBtnKey})"><img src="images/remove-icon.svg" alt="Remove film to watchlist" class="card-watchlist-plus-icon" />&nbsp;Remove</button>
-
                         </div>
                         <p class="card-plot">${completePlot.length < 110 ? completePlot : longPlot}</p>
                     </div>
@@ -107,7 +105,7 @@ function addToWatchlist(movieIDkey, movieID, watchlistBtnKey, removeBtnKey) {
 function removeFromWatchlist(movieIDkey, removeBtnKey, watchlistBtnKey, removeBtnKey) {
     localStorage.removeItem(movieIDkey.innerHTML)
 
-    // Get parent element (the movie card div) and removes it
+    // Get parent element (the movie card div) and remove it
     if (watchlist) {
         localStorage.removeItem(movieIDkey.innerHTML)
 
@@ -118,12 +116,11 @@ function removeFromWatchlist(movieIDkey, removeBtnKey, watchlistBtnKey, removeBt
     watchlistBtnKey.style.display = 'inline'
     removeBtnKey.style.display = 'none'
 
-    // Display default elements if there is nothing is local storage
+    // Display default elements if local storage empty
     if (watchlist && localStorage.length === 0) {
         if (watchlist.children) {
             const children = watchlist.children
             const childrenArr = Array.prototype.slice.call(children)
-
             childrenArr.forEach((child) => (child.style.display = 'flex'))
         }
     }
